@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct MainTabView: View {
+    // MARK: - Dependencies
+    private let dependencies: DIContainer
+    
+    // MARK: - Init
+    init(dependencies: DIContainer) {
+        self.dependencies = dependencies
+    }
+    
+    // MARK: - UI
     var body: some View {
         TabView {
-            ExploreView()
+            ExploreView(service: self.dependencies.exploreService)
                 .tabItem { Label("Explore", systemImage: "magnifyingglass") }
             
-            WishlistView()
+            WishlistView(authManager: self.dependencies.authManager)
                 .tabItem { Label("Wishlists", systemImage: "heart") }
             
-            ProfileView()
+            ProfileView(authManager: self.dependencies.authManager)
                 .tabItem { Label("Profile", systemImage: "person") }
         }
     }
 }
 
 #Preview {
-    MainTabView()
+    MainTabView(dependencies: DIContainer.mock)
 }

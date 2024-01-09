@@ -8,38 +8,24 @@
 import SwiftUI
 
 struct ProfileView: View {
+    // MARK: - Dependencies
+    @StateObject private var authManager: AuthManager
     
+    // MARK: - Properties
+    @State private var showLogin = false
     
+    // MARK: - Init
+    init(authManager: AuthManager) {
+        self._authManager = StateObject(wrappedValue: authManager)
+    }
+    
+    // MARK: - UI
     var body: some View {
         VStack {
-            // Profile log in view
-            VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Profile")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                    
-                    
-                    Text("Log in to start planning your next trip")
-                }
-                
-                LogInButton(action: {
-                    print("Log in Button pressed")
-                })
-                
-                HStack {
-                    Text("Dont have an account?")
-                        .font(.caption)
-                    
-                    Text("Sign up")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .underline()
-                        .onTapGesture {
-                            print("Sign up")
-                        }
-                }
-
+            if self.authManager.userSessionId == nil {
+                ProfileLoginView(showLogin: self.$showLogin)
+            } else {
+                UserProfileHeaderView()
             }
             
             VStack(spacing: 24) {
@@ -48,30 +34,27 @@ struct ProfileView: View {
                 ProfileOptionRowView(imageName: "questionmark.circle", title: "Visit the help center")
             }
             .padding(.vertical)
+            
+            if self.authManager.userSessionId != nil {
+                Button(action: {
+                    self.authManager.signOut()
+                }, label: {
+                    Text("Log out")
+                        .foregroundStyle(.black)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .underline()
+                })
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
+        .sheet(isPresented: self.$showLogin, content: {
+            LoginView(authManager: self.authManager)
+        })
         .padding()
     }
 }
 
 #Preview {
-    ProfileView()
-}
-
-struct LogInButton: View {
-    let action: () -> Void
-    
-    var body: some View {
-        Button {
-            self.action()
-        } label: {
-            Text("Log in")
-                .foregroundStyle(.white)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-        }
-        .frame(width: 360)
-        .frame(height: 48)
-        .background(.pink)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-    }
+    ProfileView(authManager: DIContainer.mock.authManager)
 }

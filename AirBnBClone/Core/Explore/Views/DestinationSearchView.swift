@@ -14,15 +14,19 @@ enum DestinationSearchOptions {
 }
 
 struct DestinationSearchView: View {
-    @Binding var show: Bool
+    // MARK: - Dependencies
     @ObservedObject var viewModel: ExploreViewModel
-
+    
+    // MARK: - State Management
     @State private var selectedOption: DestinationSearchOptions = .location
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var numberOfGuests = 0
     
+    // MARK: - Navigation properties
+    @Binding var show: Bool
     
+    // MARK: - UI
     var body: some View {
         VStack {
             HStack {
@@ -78,7 +82,7 @@ struct DestinationSearchView: View {
                     CollapsedPickerView(title: "Where", description: "Add destination")
                 }
             }
-            .modifier(CollapsableDestinationViewModifier())
+            .collapsable()
             .frame(height: self.selectedOption == .location ? 120 : 64)
             .onTapGesture {
                 withAnimation(.snappy) { self.selectedOption = .location
@@ -106,7 +110,7 @@ struct DestinationSearchView: View {
                     
                 }
             }
-            .modifier(CollapsableDestinationViewModifier())
+            .collapsable()
             .frame(height: self.selectedOption == .dates ? 180 : 64)
             .onTapGesture {
                 withAnimation(.snappy) {
@@ -136,7 +140,7 @@ struct DestinationSearchView: View {
                     
                 }
             }
-            .modifier(CollapsableDestinationViewModifier())
+            .collapsable()
             .frame(height: self.selectedOption == .guests ? 120 : 64)
             .onTapGesture {
                 withAnimation(.snappy) {
@@ -151,17 +155,8 @@ struct DestinationSearchView: View {
 }
 
 #Preview {
-    DestinationSearchView(show: .constant(true), viewModel: ExploreViewModel(service: ExploreService()))
-}
-
-
-struct CollapsableDestinationViewModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding()
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
-    }
+    DestinationSearchView(
+        viewModel: ExploreViewModel(service: DIContainer.mock.exploreService),
+        show: .constant(true)
+    )
 }

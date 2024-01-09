@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct ExploreView: View {
-    /// allows
-    @State private var showSearchView = false
-    @StateObject private var viewModel = ExploreViewModel(service: ExploreService())
+    // MARK: - Properties
+    @StateObject private var viewModel: ExploreViewModel
+    
+    // MARK: - Navigation properties
     @State private var showMapView = false
+    @State private var showSearchView = false
     
-    
+    // MARK: - Init
+    init(service: MockExploreService) {
+        self._viewModel = StateObject(wrappedValue: ExploreViewModel(service: service))
+    }
+
+    // MARK: - UI
     var body: some View {
         NavigationStack {
             if self.showSearchView {
                 DestinationSearchView(
-                    show: self.$showSearchView,
-                    viewModel: self.viewModel
+                    viewModel: self.viewModel, show: self.$showSearchView
                 )
             } else {
                 ZStack(alignment: .bottom) {
@@ -74,5 +80,5 @@ struct ExploreView: View {
 }
 
 #Preview {
-    ExploreView()
+    ExploreView(service: DIContainer.mock.exploreService)
 }

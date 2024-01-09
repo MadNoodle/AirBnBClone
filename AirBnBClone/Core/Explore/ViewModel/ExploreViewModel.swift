@@ -11,11 +11,11 @@ class ExploreViewModel: ObservableObject {
     @Published var listings = [Listing]()
     @Published var searchLocation = ""
     
-    private let service: ExploreService
+    private let service: MockExploreService
     
     private var listingCopy = [Listing]()
     
-    init(service: ExploreService) {
+    init(service: MockExploreService) {
         self.service = service
     }
     

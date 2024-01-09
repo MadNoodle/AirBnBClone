@@ -9,13 +9,19 @@ import SwiftUI
 import MapKit
 
 struct ListingMapView: View {
-    @Environment(\.dismiss) var dismiss
     
+    // MARK: - Data properties
     private let listings: [Listing]
-    @State private var cameraPosition: MapCameraPosition
     @State private var selectedListing: Listing?
+    
+    // MARK: - NavigationProperties
+    @Environment(\.dismiss) var dismiss
     @State private var showListingDetails = false
     
+    // MARK: - Map properties
+    @State private var cameraPosition: MapCameraPosition
+    
+    // MARK: - Init
     init(listings: [Listing], center: CLLocationCoordinate2D = .losAngeles) {
         self.listings = listings
         let visibleArea = MKCoordinateRegion(
@@ -26,6 +32,7 @@ struct ListingMapView: View {
         self._cameraPosition = State(initialValue: .region(visibleArea))
     }
     
+    // MARK: - UI
     var body: some View {
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .bottom) {

@@ -20,5 +20,53 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84F15F6D-9856-4A3C-B61C-E24C2C002EB3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AirBnBClone/Core/Authentication/Service/FirebaseAuthService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "createUser(withEmail:password:fullname:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "84F15F6D-9856-4A3C-B61C-E24C2C002EB3 - e0d19ff7dd6e5af2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for AirBnBClone.FirebaseAuthService.createUser(withEmail: Swift.String, password: Swift.String, fullname: Swift.String) async throws -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "AirBnBClone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/AirBnBClone/AirBnBClone/Core/Authentication/Service/FirebaseAuthService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "184">
+               </Location>
+               <Location
+                  uuid = "84F15F6D-9856-4A3C-B61C-E24C2C002EB3 - e0d19ff7dd6e5af2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for AirBnBClone.FirebaseAuthService.createUser(withEmail: Swift.String, password: Swift.String, fullname: Swift.String) async throws -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "AirBnBClone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/AirBnBClone/AirBnBClone/Core/Authentication/Service/FirebaseAuthService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

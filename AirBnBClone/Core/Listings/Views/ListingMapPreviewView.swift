@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ListingMapPreviewView: View {
+    // MARK: - Properties
     let listing: Listing
     
+    // MARK: - UI
     var body: some View {
         VStack {
             TabView{

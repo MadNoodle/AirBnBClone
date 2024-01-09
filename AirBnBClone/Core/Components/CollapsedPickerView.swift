@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct CollapsedPickerView: View {
+    
+    // MARK: - Properties
     let title: String
     let description: String
     
-    
+    // MARK: - UI
     var body: some View {
         VStack {
             HStack {

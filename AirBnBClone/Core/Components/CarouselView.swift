@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CarouselView: View {
-    
+    // MARK: - Properties
     let listing: Listing
     
+    // MARK: UI
     var body: some View {
         // images
         TabView {

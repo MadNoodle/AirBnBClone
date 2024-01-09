@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct AirBnBCloneApp: App {
+    
+    //MARK: - Dependencies
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    private let dependencies: DIContainer = .live
+    
+    // MARK:  - UI
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            MainTabView(dependencies: self.dependencies)
         }
     }
 }

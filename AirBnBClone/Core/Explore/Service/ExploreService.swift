@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ExploreService {
+class MockExploreService {
     func fetchService() async throws -> [Listing] {
         return PreviewProvider.shared.listings
     }

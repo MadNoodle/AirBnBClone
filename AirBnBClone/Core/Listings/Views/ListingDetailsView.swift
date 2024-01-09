@@ -9,30 +9,30 @@ import SwiftUI
 import MapKit
 
 struct ListingDetailsView: View {
-    
+    // MARK: - Properties
+    private let listing: Listing
     @Environment(\.dismiss) var dismiss
-    
     @State private var cameraPosition: MapCameraPosition
     
+    // MARK: - Init
     init(listing: Listing) {
         self.listing = listing
         let region = MKCoordinateRegion(
             center:
-                .init(
-                    latitude: self.listing.latitude,
-                    longitude: self.listing.longitude),
-                                        span: 
+                    .init(
+                        latitude: self.listing.latitude,
+                        longitude: self.listing.longitude),
+            span:
                     .init(
                         latitudeDelta: 0.1,
                         longitudeDelta: 0.1
                     )
-            )
+        )
         self._cameraPosition = State(initialValue: .region(region)
-                                    )
+        )
     }
     
-    let listing: Listing
-    
+    // MARK: - UI
     var body: some View {
         ScrollView {
             // images
@@ -47,8 +47,8 @@ struct ListingDetailsView: View {
                         .foregroundStyle(.black)
                         .background(
                             Circle()
-                            .fill(.white)
-                            .frame(width: 32, height: 32)
+                                .fill(.white)
+                                .frame(width: 32, height: 32)
                         )
                         .padding(.vertical, 48)
                         .padding(.horizontal, 32)
@@ -102,11 +102,7 @@ struct ListingDetailsView: View {
                 
                 Spacer()
                 
-                Image(self.listing.ownerImageURL, bundle: nil)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 64, height: 64)
-                    .clipShape(Circle())
+                CircularImageProfileView(imageURL: self.listing.ownerImageURL,size: .xLarge)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()

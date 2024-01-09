@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SearchAndFilterBar: View {
+    // MARK: - Properties
     @Binding var location: String
 
+    // MARK: - UI
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")

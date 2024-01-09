@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ListingItemView: View {
-    
+    // MARK: - Properties
     let listing: Listing
     
+    // MARK: - UI
     var body: some View {
         VStack(spacing: 8) {
             // images
